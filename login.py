@@ -1,3 +1,4 @@
+# Импорты
 import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout
@@ -17,23 +18,25 @@ class LoginWindow(QWidget):
         # Юзернэйм текст прикрипляется
         layout.addWidget(window.username_label, alignment=Qt.AlignCenter)
         layout.addWidget(window.username_input)
-
+        # Пароль текст создаётся
         window.password_label = QLabel("Password:")
         window.password_input = QLineEdit()
+        # Логика кнопки
         window.password_input.setEchoMode(QLineEdit.Password)
+        # Пароль текст прикрипляется
         layout.addWidget(window.password_label, alignment=Qt.AlignCenter)
         layout.addWidget(window.password_input)
-
+        # Кнопка логин создаётся
         window.login_button = QPushButton("Login")
-        # Кнопка
+        # Кнопка логин прикрипляеться
         window.login_button.clicked.connect(window.login)
         layout.addWidget(window.login_button)
-
+        # Error alert/уведомление
         window.error_label = QLabel()
         layout.addWidget(window.error_label, alignment=Qt.AlignCenter)
-
+        # Основная вертикальная линия прикрипляеться к окну
         window.setLayout(layout)
-
+    # Логика пароля
     def login(window):
         username = window.username_input.text()
         password = window.password_input.text()
@@ -44,6 +47,7 @@ class LoginWindow(QWidget):
         else:
             window.error_label.setText("Invalid username or password")
 
+# Основные событие
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = LoginWindow()
