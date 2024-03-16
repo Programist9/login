@@ -1,13 +1,15 @@
 # Импорты
 import sys
+import base
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout
+
 # Клас для окна для логина
-class LoginWindow(QWidget):
+class studentWindow(QWidget):
     def __init__(window):
         super().__init__()
         # Название для окна логина
-        window.setWindowTitle("Login")
+        window.setWindowTitle("student")
         # Размеры логин окна
         window.resize(250,300)
         # Основная вертикальная линия
@@ -27,21 +29,21 @@ class LoginWindow(QWidget):
         layout.addWidget(window.password_label, alignment=Qt.AlignCenter)
         layout.addWidget(window.password_input)
         # Кнопка логин создаётся
-        window.login_button = QPushButton("Login")
+        window.student_button = QPushButton("student")
         # Кнопка логин прикрипляеться
-        window.login_button.clicked.connect(window.login)
-        layout.addWidget(window.login_button)
+        window.student_button.clicked.connect(window.student)
+        layout.addWidget(window.student_button)
         # Error alert/уведомление
         window.error_label = QLabel()
         layout.addWidget(window.error_label, alignment=Qt.AlignCenter)
         # Основная вертикальная линия прикрипляеться к окну
         window.setLayout(layout)
     # Логика пароля
-    def login(window):
+    def student(window):
         username = window.username_input.text()
         password = window.password_input.text()
         if username == "user" and password == "pass":
-            window.error_label.setText("Login successful!")
+            window.error_label.setText("student successful!")
             window.hide()
             ofice.show()
         else:
@@ -50,7 +52,7 @@ class LoginWindow(QWidget):
 # Основные событие
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = LoginWindow()
+    window = studentWindow()
     ofice = QWidget()
     ofice.resize(600, 500)
     ofice.setWindowTitle('Ofice')
