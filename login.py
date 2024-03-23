@@ -1,6 +1,6 @@
 # Импорты
 import sys
-import base
+from base import *
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout, QHBoxLayout
 
@@ -8,54 +8,68 @@ from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QLineEdit, QPushButto
 class studentWindow(QWidget):
     def __init__(window):
         super().__init__()
-        # Название для окна логина
-        window.setWindowTitle("student")
-        # Размеры логин окна
-        window.resize(250,300)
-        # Основная вертикальная линия
+        window.setWindowTitle("Login")
+        window.resize(250, 300)
+        window.setWindowFlags(Qt.WindowCloseButtonHint | Qt.WindowMinimizeButtonHint)
+        
         layout = QVBoxLayout()
-        # Юзернэйм текст создаётся
+        layout.setAlignment(Qt.AlignCenter)
+
         window.username_label = QLabel("Username:")
         window.username_input = QLineEdit()
-        # Юзернэйм текст прикрипляется
-        layout.addWidget(window.username_label, alignment=Qt.AlignCenter)
+        v
         layout.addWidget(window.username_input)
-        # Пароль текст создаётся
+
         window.password_label = QLabel("Password:")
         window.password_input = QLineEdit()
-        # Логика кнопки
         window.password_input.setEchoMode(QLineEdit.Password)
-        # Пароль текст прикрипляется
-        layout.addWidget(window.password_label, alignment=Qt.AlignCenter)
+        layout.addWidget(window.password_label)
         layout.addWidget(window.password_input)
-        # Кнопка логин создаётся
-        window.student_button = QPushButton("student")
-        # Кнопка логин прикрипляеться
-        window.student_button.clicked.connect(window.student)
-        layout.addWidget(window.student_button)
-        # Error alert/уведомление
+
+        window.login_button = QPushButton("Login")
+        window.login_button.clicked.connect(window.login)
+        layout.addWidget(window.login_button)
+
         window.error_label = QLabel()
-        layout.addWidget(window.error_label, alignment=Qt.AlignCenter)
-        # Основная вертикальная линия прикрипляеться к окну
+        layout.addWidget(window.error_label)
+
         window.setLayout(layout)
-    # Логика пароля
-    def student(window):
-        username = window.username_input.text()
-        password = window.password_input.text()
-        if username == "user" and password == "pass":
-            window.error_label.setText("student successful!")
+
+    def login(window):
+        login_input = window.username_input.text()
+        pas_input = window.password_input.text()
+        data = get_data(login_input)
+        if pas_input == data[0][4]:
+            print(data)
             window.hide()
             ofice.show()
         else:
             window.error_label.setText("Invalid username or password")
+# Клас для окна для офиса
+class studenOficetWindow(QWidget):
+    def __init__(ofice):
+        super().__init__()
+        # Название для окна логина
+        ofice.setWindowTitle("Student account")
+        # Размеры логин окна
+        ofice.resize(310,300)
+        # Основная вертикальная линия
+        layout_for_ofice = QVBoxLayout()
+        # Info
+        ofice.info_name = QLabel()
+        layout_for_ofice.addWidget(ofice.info_name)
+        ofice.info_class = QLabel()
+        layout_for_ofice.addWidget(ofice.info_class)
+        ofice.info_avr_score = QLabel()
+        layout_for_ofice.addWidget(ofice.info_avr_score)
+        # Основная вертикальная линия прикрипляеться к окну
+        ofice.setLayout(layout_for_ofice)
 
 # Основные событие
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = studentWindow()
-    ofice = QWidget()
-    ofice.resize(600, 500)
-    ofice.setWindowTitle('Ofice')
+    ofice = studenOficetWindow()
     ofice.hide()
     window.show()
     sys.exit(app.exec_())
