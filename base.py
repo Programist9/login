@@ -19,8 +19,8 @@ cursor.execute('''CREATE TABLE IF NOT EXISTS students (
 
 
 
-cursor.execute('''SELECT * FROM students''')
-stud = cursor.fetchall()
-for s in stud:
-    print(s[4])
-base1.commit()
+# cursor.execute('''SELECT * FROM students''')
+# stud = cursor.fetchall()
+# for s in stud:
+#     print(s[4])
+# base1.commit()
