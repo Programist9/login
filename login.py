@@ -18,6 +18,7 @@ class studentWindow(QWidget):
         window.username_label = QLabel("Username:")
         window.username_input = QLineEdit()
         
+        layout.addWidget(window.username_label)
         layout.addWidget(window.username_input)
 
         window.password_label = QLabel("Password:")
