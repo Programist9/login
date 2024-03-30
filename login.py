@@ -163,11 +163,10 @@ class singUpWindow(QWidget):
         windowforsingup.hide()
         window.show()
 # Основные событие
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = studentWindow()
-    ofice = studenOficetWindow()
-    menu = mainMenu()
-    sing_up = singUpWindow()
-    menu.show()
-    sys.exit(app.exec_())
+app = QApplication(sys.argv)
+window = studentWindow()
+ofice = studenOficetWindow()
+menu = mainMenu()
+sing_up = singUpWindow()
+menu.show()
+sys.exit(app.exec_())
